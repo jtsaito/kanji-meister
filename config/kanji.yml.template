@@ -1,0 +1,13 @@
+---
+- :heisig_id: '1'
+  :kanji: "一"
+  :key_word: one
+  :stroke_count: '1'
+  :index_ordinal: '1'
+  :heisig_lesson: '1'
+- :heisig_id: '71'
+  :kanji: "乙"
+  :key_word: fish guts
+  :stroke_count: '1'
+  :index_ordinal: '2'
+  :heisig_lesson: '5'
