@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'mysql2'
@@ -17,6 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby   # required for migrations for some reason
 
 gem 'unicorn'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -37,6 +39,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # fake env variables from /.env file
+  gem 'dotenv-rails', :require => 'dotenv/rails-now'
+
   gem 'pry'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
