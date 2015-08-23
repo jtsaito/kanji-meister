@@ -20,6 +20,9 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+#  We are using AWS OpsWorks with RDS. The OpsWorks coobook
+#  automatically replaces this file and adds settings for production.
+#  These settings include the database name, host, user, and password.
 production:
-  <<: *default
-  database: db/production.sqlite3
+<<: *default
+database: db/production.sqlite3
