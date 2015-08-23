@@ -1,0 +1,25 @@
+---
+- :heisig_id: '9'
+  :kanji: "九"
+  :key_word: nine
+  :stroke_count: '2'
+  :index_ordinal: '6'
+  :heisig_lesson: '1'
+- :heisig_id: '97'
+  :kanji: "了"
+  :key_word: complete
+  :stroke_count: '2'
+  :index_ordinal: '7'
+  :heisig_lesson: '6'
+- :heisig_id: '2025'
+  :kanji: "襲"
+  :key_word: attack
+  :stroke_count: '22'
+  :index_ordinal: '2041'
+  :heisig_lesson: '55'
+- :heisig_id: '1455'
+  :kanji: "鑑"
+  :key_word: specimen
+  :stroke_count: '23'
+  :index_ordinal: '2042'
+  :heisig_lesson: '38'
