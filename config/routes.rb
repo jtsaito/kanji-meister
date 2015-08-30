@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :kanjis, only: [:index, :show]
+      resources :kanjis, only: :show
     end
   end
 
