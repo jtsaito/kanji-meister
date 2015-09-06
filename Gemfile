@@ -18,6 +18,9 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'unicorn'
 
+# active uuid. needs from github, otherwise does not recognise uuid type in migrations
+gem 'activeuuid',  git: 'https://github.com/jashmenn/activeuuid.git'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
