@@ -22,8 +22,26 @@ window.KanjiView = Backbone.View.extend({
     this
 
   events: {
-    "click" : "clicked"
+    "click a#learned" : "learned"
+    "click a#not_learned" : "not_learned"
+    "click div.kanji" : "clicked"
   }
+
+  learned: ->
+    this.post_kanji_reviewed_event(correct: true)
+
+  not_learned: ->
+    this.post_kanji_reviewed_event(correct: false)
+
+  post_kanji_reviewed_event: (result) ->
+    new Event(
+      name: "kanji_reviewed"
+      user_uuid: window.App.uuid
+      payload:
+        kanji: this.model.kanji
+        kanji_attributes: this.model.attributes
+        result: result
+    ).save()
 
   clicked: (e) ->
     this.show_kanji = if this.show_kanji then false else true
@@ -32,9 +50,10 @@ window.KanjiView = Backbone.View.extend({
   kanji_rendered: ->
     new Event(
       name: "kanji_rendered"
-      uuid: window.App.uuid
-      kanji: this.model.kanji
-      kanji_attributes: this.model.attributes
+      user_uuid: window.App.uuid
+      payload:
+        kanji: this.model.kanji
+        kanji_attributes: this.model.attributes
     ).save()
 
 })
