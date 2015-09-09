@@ -12,7 +12,6 @@ window.App = new ( Backbone.Router.extend({
       e.preventDefault()
       Backbone.history.navigate(e.target.pathname, { trigger: true })
 
-
     Backbone.history.start({pushState: true }) unless Backbone.History.started
 
   set_user_uuid: ->
