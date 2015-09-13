@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     namespace :v1 do
 
-      resources :kanjis, only: :show
+      resources :kanjis, only: [:show, :index]
 
       # events should eventually be moved into a seperate service
       resources :events, only: :create
