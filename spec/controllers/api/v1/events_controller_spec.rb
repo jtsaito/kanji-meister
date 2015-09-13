@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::EventsController, type: :controller do
 
-  describe "GET #create" do
+  describe "POST #create" do
     let(:user) { create(:user) }
     let(:create_params) do
       {
