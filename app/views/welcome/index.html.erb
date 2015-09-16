@@ -2,12 +2,20 @@
 
 <div id='uuid' uuid="<%= current_user.uuid -%>" hidden></div>
 
-<div id='app'> </div>
+<div id='app'></div>
+
+<div id='review-container'></div>
 
 <script type="text/html" id="kanji">
-  <div class="kanji"> <%%= rendering %> </div>
-  <div class="kanji-info"> <%%= heisig_id %> </div>
+  <div class="kanji"><%%= rendering %></div>
+  <div class="kanji-info"><%%= heisig_id %></div>
 
   <a id='learned'>○</a>
   <a id='not_learned'>×</a>
+</script>
+
+<script type="text/html" id="review">
+<div class="review-info"><%%= foo %></div>
+
+  <a id='next-review-item'>Next</a>
 </script>

@@ -19,7 +19,7 @@ window.App = new ( Backbone.Router.extend({
 
   index: ->
     this.kanji = new Kanji({id: 17})
-    this.kanjiView = new KanjiView( { model: this.kanji } )
+    this.kanjiView = new KanjiView({ model: this.kanji })
 
     $('#app').html(this.kanjiView.el)
 
@@ -28,5 +28,13 @@ window.App = new ( Backbone.Router.extend({
         window.App.kanjiView.render()
     })
 
-}))
+    this.tasks = new Tasks()
+    this.reviewView = new ReviewView({ model: this.tasks, kanji_view: this.kanjiView })
+    $('#review-container').html(this.reviewView.el)
 
+    this.tasks.fetch({
+      success: (model, response) ->
+        window.App.reviewView.render()
+    })
+
+}))
