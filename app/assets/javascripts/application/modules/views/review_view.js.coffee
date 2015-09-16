@@ -24,7 +24,7 @@ window.ReviewView = Backbone.View.extend({
       it.kanji().get("kanji")
     )
 
-    this.$el.html(this.template()({"foo": stuff}))
+    this.$el.html(this.template()({ "foo": stuff }))
     this
 
   events: {

@@ -18,7 +18,7 @@ window.App = new ( Backbone.Router.extend({
     window.App.uuid = $("#uuid").attr("uuid")
 
   index: ->
-    this.kanji = new Kanji({id: 17})
+    this.kanji = new Kanji({ id: 17 })
     this.kanjiView = new KanjiView({ model: this.kanji })
 
     $('#app').html(this.kanjiView.el)
