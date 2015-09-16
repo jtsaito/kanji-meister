@@ -27,6 +27,11 @@ window.KanjiView = Backbone.View.extend({
     "click div.kanji" : "clicked"
   }
 
+  kanji_updated: (kanji) ->
+    this.model = kanji
+    this.show_kanji = false
+    this.render()
+
   learned: ->
     this.post_kanji_reviewed_event(correct: true)
 
