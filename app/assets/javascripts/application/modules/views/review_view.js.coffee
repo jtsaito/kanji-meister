@@ -10,7 +10,7 @@ window.ReviewView = Backbone.View.extend({
     this.kanji_view.on("kanji_updated", this.kanji_view.kanji_updated)
     this.index = 0
 
-  template:  ->
+  template: ->
     _.template( $("#review").html() )
 
   get_kanji: (index) ->
