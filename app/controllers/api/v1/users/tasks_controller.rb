@@ -7,7 +7,7 @@ module Api
         def index
           user = User.find_by_uuid(params[:user_id])
 
-          render json: Task.for_user(user).to_json
+          render json: Task.for_user(user, only_new: params[:only_new]).to_json
         end
       end
     end
