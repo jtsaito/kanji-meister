@@ -14,17 +14,14 @@ window.ReviewView = Backbone.View.extend({
     _.template( $("#review").html() )
 
   get_kanji: (index) ->
-    this.model.models[index].kanji()
-
-  models: ->
-    this.model.models
+    this.collection.at(index).kanji()
 
   render: () ->
-    stuff = _.map(this.model.models, (it) ->
+    kanjis = this.collection.map( (it) ->
       it.kanji().get("kanji")
     )
 
-    this.$el.html(this.template()({ "foo": stuff }))
+    this.$el.html(this.template()({ "foo": kanjis }))
     this
 
   events: {
@@ -32,7 +29,7 @@ window.ReviewView = Backbone.View.extend({
   }
 
   increment_index: ->
-    this.index = (this.index + 1) % this.model.models.length
+    this.index = (this.index + 1) % this.collection.length
 
   next_review_item: ->
     this.increment_index()
@@ -45,9 +42,9 @@ window.ReviewView = Backbone.View.extend({
 
   fetch_new_kanji: ->
     this.index = 0
-    this.model.task_type = "present_new"
+    this.collection.task_type = "present_new"
 
-    this.model.fetch({
+    this.collection.fetch({
       success: (model, response) ->
         window.App.reviewView.render()
         window.App.reviewView.set_kanji_to_first()
@@ -55,9 +52,9 @@ window.ReviewView = Backbone.View.extend({
 
   fetch_review_kanji: ->
     this.index = 0
-    this.model.task_type = "review"
+    this.collection.task_type = "review"
 
-    this.model.fetch({
+    this.collection.fetch({
       success: (model, response) ->
         window.App.reviewView.render()
         window.App.reviewView.set_kanji_to_first()

@@ -29,7 +29,7 @@ window.App = new ( Backbone.Router.extend({
     })
 
     this.tasks = new Tasks()
-    this.reviewView = new ReviewView({ model: this.tasks, kanji_view: this.kanjiView })
+    this.reviewView = new ReviewView({ collection: this.tasks, kanji_view: this.kanjiView })
     $('#review-container').html(this.reviewView.el)
 
     this.tasks.fetch({
