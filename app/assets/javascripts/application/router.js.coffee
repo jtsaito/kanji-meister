@@ -37,4 +37,9 @@ window.App = new ( Backbone.Router.extend({
         window.App.reviewView.render()
     })
 
+    this.navigationView = new NavigationView({ review_view: this.reviewView })
+    $('#navigation-container').html(this.navigationView.el)
+
+    this.navigationView.render()
+
 }))

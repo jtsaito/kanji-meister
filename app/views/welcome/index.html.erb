@@ -6,6 +6,8 @@
 
 <div id='review-container'></div>
 
+<div id='navigation-container'></div>
+
 <script type="text/html" id="kanji">
   <div class="kanji"><%%= rendering %></div>
   <div class="kanji-info"><%%= heisig_id %></div>
@@ -15,7 +17,13 @@
 </script>
 
 <script type="text/html" id="review">
-<div class="review-info"><%%= foo %></div>
-
+  <div class="review-info"><%%= foo %></div>
   <a id='next-review-item'>Next</a>
+</script>
+
+<script type="text/html" id="navigation">
+  <div class="navigation"><%%= foo %></div>
+  <a id='new-items'>learn new kanjis</a>
+  <br>
+  <a id='review-items'>review kanji</a>
 </script>
