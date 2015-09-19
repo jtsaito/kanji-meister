@@ -41,6 +41,7 @@ window.ReviewView = Backbone.View.extend({
 
   set_index: (index) ->
     this.index = index
+
     kanji = this.collection.at(this.index).kanji()
     this.kanji_view.trigger("kanji_updated", kanji)
 
