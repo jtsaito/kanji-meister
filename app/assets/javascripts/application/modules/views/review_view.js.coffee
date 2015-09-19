@@ -6,9 +6,12 @@ window.ReviewView = Backbone.View.extend({
   id:        'review-view'
 
   initialize: (attrs) ->
+    this.index = 0
+
     this.kanji_view = attrs["kanji_view"]
     this.kanji_view.on("kanji_updated", this.kanji_view.kanji_updated)
-    this.index = 0
+
+    this.listenTo(this.collection, 'reset', this.collection_updated)
 
   template: ->
     _.template( $("#review").html() )
@@ -41,23 +44,16 @@ window.ReviewView = Backbone.View.extend({
     this.kanji_view.trigger("kanji_updated", kanji)
 
   fetch_new_kanji: ->
-    this.index = 0
     this.collection.task_type = "present_new"
-
-    this.collection.fetch({
-      success: (model, response) ->
-        window.App.reviewView.render()
-        window.App.reviewView.set_kanji_to_first()
-    })
+    this.collection.fetch({ reset: true })
 
   fetch_review_kanji: ->
-    this.index = 0
     this.collection.task_type = "review"
+    this.collection.fetch({ reset: true })
 
-    this.collection.fetch({
-      success: (model, response) ->
-        window.App.reviewView.render()
-        window.App.reviewView.set_kanji_to_first()
-    })
+  collection_updated: ->
+    this.index = 0
+    this.set_kanji_to_first()
+    this.render()
 
 })
