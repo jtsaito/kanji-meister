@@ -16,9 +16,6 @@ window.ReviewView = Backbone.View.extend({
   template: ->
     _.template( $("#review").html() )
 
-  get_kanji: (index) ->
-    this.collection.at(index).kanji()
-
   render: () ->
     kanji_list = this.collection.map( (it) ->
       it.kanji().get("kanji")
@@ -42,9 +39,9 @@ window.ReviewView = Backbone.View.extend({
     this.set_index(0)
     this.render()
 
-  set_index: (i) ->
-    this.index = i
-    kanji = this.get_kanji(this.index)
+  set_index: (index) ->
+    this.index = index
+    kanji = this.collection.at(this.index).kanji()
     this.kanji_view.trigger("kanji_updated", kanji)
 
 })
