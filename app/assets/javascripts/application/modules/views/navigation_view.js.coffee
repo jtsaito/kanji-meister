@@ -7,8 +7,8 @@ window.NavigationView = Backbone.View.extend({
 
   initialize: (attrs) ->
     this.review_view = attrs["review_view"]
-    this.review_view.on("new_items_updated", this.review_view.fetch_new_kanji)
-    this.review_view.on("review_items_updated", this.review_view.fetch_review_kanji)
+    this.review_view.on("fetch_new_tasks", this.review_view.fetch_new_kanji)
+    this.review_view.on("fetch_review_tasks", this.review_view.fetch_review_kanji)
 
   template:  ->
     _.template( $("#navigation").html() )
@@ -23,9 +23,9 @@ window.NavigationView = Backbone.View.extend({
   }
 
   new_items: ->
-    this.review_view.trigger("new_items_updated")
+    this.review_view.trigger("fetch_new_tasks")
 
   review_items: ->
-    this.review_view.trigger("review_items_updated")
+    this.review_view.trigger("fetch_review_tasks")
 
 })
