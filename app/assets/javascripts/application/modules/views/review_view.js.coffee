@@ -28,27 +28,23 @@ window.ReviewView = Backbone.View.extend({
     this
 
   events: {
-    "click a#next-review-item" : "next_review_item"
+    "click a#next-review-item" : "increment_index"
   }
 
   increment_index: ->
-    this.index = (this.index + 1) % this.collection.length
-
-  next_review_item: ->
-    this.increment_index()
-    kanji = this.get_kanji(this.index)
-    this.kanji_view.trigger("kanji_updated", kanji)
-
-  set_kanji_to_first: ->
-    kanji = this.get_kanji(0)
-    this.kanji_view.trigger("kanji_updated", kanji)
+    new_index = (this.index + 1) % this.collection.length
+    this.set_index(new_index)
 
   fetch_tasks: (task_type) ->
     this.collection.set_task_type_and_fetch(task_type)
 
   collection_updated: ->
-    this.index = 0
-    this.set_kanji_to_first()
+    this.set_index(0)
     this.render()
+
+  set_index: (i) ->
+    this.index = i
+    kanji = this.get_kanji(this.index)
+    this.kanji_view.trigger("kanji_updated", kanji)
 
 })
