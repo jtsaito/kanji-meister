@@ -17,14 +17,14 @@ window.NavigationView = Backbone.View.extend({
     this
 
   events: {
-    "click a#new-items" : "new_items"
-    "click a#review-items" : "review_items"
+    "click a#fetch_unreviewed_tasks" : "fetch_unreviewed_tasks"
+    "click a#fetch_review_tasks" : "fetch_review_tasks"
   }
 
-  new_items: ->
-    this.review_view.trigger("fetch_tasks", "present_new")
+  fetch_unreviewed_tasks: ->
+    this.review_view.trigger("fetch_tasks", "introduction")
 
-  review_items: ->
+  fetch_review_tasks: ->
     this.review_view.trigger("fetch_tasks", "review")
 
 })
