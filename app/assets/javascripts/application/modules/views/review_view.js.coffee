@@ -43,13 +43,9 @@ window.ReviewView = Backbone.View.extend({
     kanji = this.get_kanji(0)
     this.kanji_view.trigger("kanji_updated", kanji)
 
-  fetch_new_kanji: ->
-    this.collection.task_type = "present_new"
-    this.collection.fetch({ reset: true })
-
-  fetch_review_kanji: ->
-    this.collection.task_type = "review"
-    this.collection.fetch({ reset: true })
+  fetch_tasks: (task_type) ->
+    console.log task_type
+    this.collection.set_task_type_and_fetch(task_type)
 
   collection_updated: ->
     this.index = 0
