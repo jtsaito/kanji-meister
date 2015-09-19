@@ -13,7 +13,7 @@ window.NavigationView = Backbone.View.extend({
     _.template( $("#navigation").html() )
 
   render: () ->
-    this.$el.html(this.template()({foo: "foo"}))
+    this.$el.html(this.template()())
     this
 
   events: {
