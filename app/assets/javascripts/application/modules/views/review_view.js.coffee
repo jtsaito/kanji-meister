@@ -18,8 +18,8 @@ window.ReviewView = Backbone.View.extend({
 
   render: () ->
     kanji_list = this.collection.map( (it) ->
-      it.kanji().get("kanji")
-    )
+      it.kanji().get("key_word")
+    ).join(", ")
 
     this.$el.html(this.template()({ "kanji_list": kanji_list }))
     this
