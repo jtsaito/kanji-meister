@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div .kanji {
-  font-size: 200%;
+div .kanji-keyword {
+  font-size: 256%;
+}
+
+div .kanji-character {
+  font-size: 256%;
+}
+
+div #kanji-info-container {
+  border-style: solid;
+  border-width: thin;
+}
+
+div .kanji-feedback{
+  font-size: 256%;
 }
