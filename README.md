@@ -1,6 +1,14 @@
 # kanji-meister
 Simple Kanji Flash Cards (Heisig style)
 
+# Setup
+
+## Database
+Setup database with UTF-8 encoding.
+
+## Test
+Run tests with `bundle exec rspec`.
+
 # Notes on Using AWS OpsWorks
 To get this repo running on OpsWorks I mainly stuck to [Alex Wood's tutorial](https://ruby.awsblog.com/post/Tx7FQMT084INCR/Deploying-Ruby-on-Rails-Applications-to-AWS-OpsWorks). However, two fixes were needed.
 
