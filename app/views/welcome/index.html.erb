@@ -9,11 +9,19 @@
 <div id='navigation-container'></div>
 
 <script type="text/html" id="kanji">
-  <div class="kanji"><%%= rendering %></div>
-  <div class="kanji-info"><%%= heisig_id %></div>
+  <div class="kanji-keyword"><%%= key_word %></div>
 
-  <a id='learned'>○</a>
-  <a id='not_learned'>×</a>
+  <div id="kanji-info-container">
+    <div class="kanji-character"><%%= kanji %></div>
+    <div>Heisig Lesson: <%%= heisig_lesson %></div>
+    <div>Heisig ID: <%%= heisig_id %></div>
+    <div>Strokes: <%%= stroke_count%></div>
+  </div>
+
+  <div class="kanji-feedback">
+    <a id='learned'>○</a>
+    <a id='not_learned'>×</a>
+  </div>
 </script>
 
 <script type="text/html" id="review">

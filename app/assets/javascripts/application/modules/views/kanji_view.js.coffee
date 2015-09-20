@@ -12,19 +12,23 @@ window.KanjiView = Backbone.View.extend({
     _.template( $("#kanji").html() )
 
   render: () ->
-    key = if this.show_kanji then "kanji" else "key_word"
-    rendering = this.model.get(key)
-    attributes = _.extend(this.model.attributes, { rendering: rendering })
+    attributes = _.extend(this.model.attributes)
+
+    this.$el.html(this.template()(attributes))
+
+    if this.show_kanji
+      $("#kanji-info-container").show()
+    else
+      $("#kanji-info-container").hide()
 
     this.post_kanji_rendered_event()
 
-    this.$el.html(this.template()(attributes))
     this
 
   events: {
     "click a#learned" : "learned"
     "click a#not_learned" : "not_learned"
-    "click div.kanji" : "clicked"
+    "click div.kanji-keyword" : "clicked"
   }
 
   kanji_updated: (kanji) ->
