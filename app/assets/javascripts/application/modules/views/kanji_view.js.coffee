@@ -17,9 +17,9 @@ window.KanjiView = Backbone.View.extend({
     this.$el.html(this.template()(attributes))
 
     if this.show_kanji
-      $("#kanji-info-container").show()
+      $(".kanji-info").show()
     else
-      $("#kanji-info-container").hide()
+      $(".kanji-info").hide()
 
     this.post_kanji_rendered_event()
 
