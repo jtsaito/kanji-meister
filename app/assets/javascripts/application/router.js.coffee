@@ -21,7 +21,7 @@ window.App = new ( Backbone.Router.extend({
     this.kanji = new Kanji({ id: 17 })
     this.kanjiView = new KanjiView({ model: this.kanji })
 
-    $('#app').html(this.kanjiView.el)
+    $('#kanji-container').html(this.kanjiView.el)
 
     this.kanji.fetch({
       success: (model, response) ->

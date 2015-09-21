@@ -11,8 +11,9 @@ div .kanji-character {
 }
 
 div #kanji-info-container {
-  border-style: solid;
-  border-width: thin;
+  min-height: 100%;
+  height: 100%;
+  height: 120px;
 }
 
 div .kanji-feedback{
