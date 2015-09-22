@@ -38,9 +38,11 @@ window.KanjiView = Backbone.View.extend({
 
   learned: ->
     this.post_kanji_reviewed_event(correct: true)
+    this.trigger("clicked-result")
 
   not_learned: ->
     this.post_kanji_reviewed_event(correct: false)
+    this.trigger("clicked-result")
 
   clicked: (e) ->
     this.show_kanji = if this.show_kanji then false else true

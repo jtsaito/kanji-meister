@@ -12,6 +12,7 @@ window.ReviewView = Backbone.View.extend({
     this.kanji_view.on("kanji_updated", this.kanji_view.kanji_updated)
 
     this.listenTo(this.collection, 'reset', this.collection_updated)
+    this.listenTo(this.kanji_view, 'clicked-result', this.increment_index)
 
   template: ->
     _.template( $("#review").html() )
