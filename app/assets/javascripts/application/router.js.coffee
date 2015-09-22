@@ -23,11 +23,6 @@ window.App = new ( Backbone.Router.extend({
 
     $('#kanji-container').html(this.kanjiView.el)
 
-    this.kanji.fetch({
-      success: (model, response) ->
-        window.App.kanjiView.render()
-    })
-
     this.tasks = new Tasks()
     this.reviewView = new ReviewView({ collection: this.tasks, kanji_view: this.kanjiView })
     $('#review-container').html(this.reviewView.el)
