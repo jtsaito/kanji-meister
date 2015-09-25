@@ -13,6 +13,7 @@ window.ReviewView = Backbone.View.extend({
 
     this.listenTo(this.collection, 'reset', this.collection_updated)
     this.listenTo(this.kanji_view, 'clicked-result', this.increment_index)
+    this.listenTo(this.kanji_view, 'kanji-clicked', this.clicked)
 
   template: ->
     _.template( $("#review").html() )
@@ -23,10 +24,13 @@ window.ReviewView = Backbone.View.extend({
     ).join(", ")
 
     this.$el.html(this.template()({ "kanji_list": kanji_list }))
+
     this
 
   events: {
     "click a#next-review-item" : "increment_index"
+    "click a#learned" : "learned"
+    "click a#not_learned" : "not_learned"
   }
 
   increment_index: ->
@@ -45,5 +49,32 @@ window.ReviewView = Backbone.View.extend({
 
     kanji = this.collection.at(this.index).kanji()
     this.kanji_view.trigger("kanji_updated", kanji)
+
+  # kanji stuff
+  learned: ->
+    this.post_kanji_reviewed_event(correct: true)
+    this.kanji_view.trigger("clicked-result")
+
+  not_learned: ->
+    this.post_kanji_reviewed_event(correct: false)
+    this._view.trigger("clicked-result")
+
+  clicked: (e) ->
+    this.kanji_view.toggle_show_kanji()
+    this.kanji_view.render()
+
+  show_kanji_buttons: ->
+    console.log "show kanji buttons? #{this.kanji_view.show_kanji}"
+    this.kanji_view.show_kanji
+
+  post_kanji_reviewed_event: (result) ->
+    new Event(
+      name: "kanji_reviewed"
+      user_uuid: window.App.uuid
+      payload:
+        kanji: this.kanji_view.model.kanji
+        kanji_attributes: this.kanji_view.model.attributes
+        result: result
+    ).save()
 
 })

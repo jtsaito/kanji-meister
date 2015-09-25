@@ -10,11 +10,8 @@
   </div>
 
   <div class="jumbotron">
-
     <div id='kanji-container'></div>
-
   </div>
-
 
   <div class="row marketing">
     <div id='review-container'></div>
@@ -34,9 +31,6 @@
 
   <div id="kanji-info-container" >
     <div class="kanji-character kanji-info"><%%= kanji %></div>
-    <div class="kanji-info">Heisig Lesson: <%%= heisig_lesson %></div>
-    <div class="kanji-info">Heisig ID: <%%= heisig_id %></div>
-    <div class="kanji-info">Strokes: <%%= stroke_count%></div>
   </div>
 
   <div class="kanji-feedback">
@@ -62,6 +56,12 @@
       <a id='next-review-item' class="btn btn-lg btn-info" href="#" role="button" id='learned'>next</a>
     </p>
   </div>
+</script>
+
+<script type="text/html" id="kanji-info-stuff">
+  <div class="kanji-info">Heisig Lesson: <%%= heisig_lesson %></div>
+  <div class="kanji-info">Heisig ID: <%%= heisig_id %></div>
+  <div class="kanji-info">Strokes: <%%= stroke_count%></div>
 </script>
 
 <script type="text/html" id="navigation">
