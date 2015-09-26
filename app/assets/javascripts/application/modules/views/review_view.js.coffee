@@ -48,9 +48,11 @@ window.ReviewView = Backbone.View.extend({
 
   render_kanji_feedback: ->
     if this.kanji_view.show_kanji
-      this.$(".kanji-feedback").show()
+      this.$(".learned-btn").show()
+      this.$(".nxt-review-btn").hide()
     else
-      this.$(".kanji-feedback").hide()
+      this.$(".learned-btn").hide()
+      this.$(".nxt-review-btn").show()
 
   increment_index: ->
     new_index = (this.index + 1) % this.collection.length
