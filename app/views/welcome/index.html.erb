@@ -44,21 +44,25 @@
   </div>
 
   <div class="col-lg-6">
-    <h4>This batch</h4>
+    <h4>Batch</h4>
     <p>
-      <div class="review-info">
+      <div class="tasks-info">
         <%%= kanji_list %>
       </div>
     <p>
   </div>
 
   <div class="col-lg-6">
+    <h4>Kanji</h4>
     <p>
-    </p>
+      <div class="review-info">
+        <div id="review-info-container">
+      </div>
+    <p>
   </div>
 </script>
 
-<script type="text/html" id="kanji-info-stuff">
+<script type="text/html" id="review-info">
   <div class="kanji-info">Heisig Lesson: <%%= heisig_lesson %></div>
   <div class="kanji-info">Heisig ID: <%%= heisig_id %></div>
   <div class="kanji-info">Strokes: <%%= stroke_count%></div>

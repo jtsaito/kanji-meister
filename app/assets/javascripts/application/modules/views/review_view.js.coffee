@@ -14,6 +14,8 @@ window.ReviewView = Backbone.View.extend({
     this.listenTo(this.collection, 'reset', this.collection_updated)
     this.listenTo(this.kanji_view, 'clicked-result', this.increment_index)
 
+    this.kanji_info_view = new KanjiInfoView()
+
   template: ->
     _.template( $("#review").html() )
 
@@ -29,10 +31,11 @@ window.ReviewView = Backbone.View.extend({
       it.kanji().get("key_word")
     ).join(", ")
 
-    this.$el.html(this.template()({ "kanji_list": kanji_list }))
+    this.$el.html(this.template()({ "kanji_list": kanji_list } ))
 
     this.render_kanji_view()
     this.render_kanji_feedback()
+    this.render_kanji_info()
 
     this
 
@@ -54,6 +57,16 @@ window.ReviewView = Backbone.View.extend({
       this.$(".learned-btn").hide()
       this.$(".nxt-review-btn").show()
 
+  render_kanji_info: ->
+    this.$('#review-info-container').html(this.kanji_info_view.el)
+
+    if this.kanji != null
+      if this.kanji_view.show_kanji
+        this.$(".review-info").show()
+      else
+        this.$(".review-info").hide()
+      this.kanji_info_view.render()
+
   increment_index: ->
     new_index = (this.index + 1) % this.collection.length
     this.set_index(new_index)
@@ -72,6 +85,8 @@ window.ReviewView = Backbone.View.extend({
     kanji = this.collection.at(this.index).kanji()
     this.kanji_view.trigger("kanji_updated", kanji)
     this.render_kanji_feedback()
+    this.kanji_info_view.model = kanji
+    this.render_kanji_info()
 
   # kanji stuff
   learned: ->
@@ -87,6 +102,8 @@ window.ReviewView = Backbone.View.extend({
     this.kanji_view.render()
 
     this.render_kanji_feedback()
+
+    this.render_kanji_info()
 
   show_kanji_buttons: ->
     this.kanji_view.show_kanji
