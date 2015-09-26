@@ -9,10 +9,6 @@
     <h3 class="text-muted">漢字マイスター</h3>
   </div>
 
-  <div class="jumbotron">
-    <div id='kanji-container'></div>
-  </div>
-
   <div class="row marketing">
     <div id='review-container'></div>
   </div>
@@ -30,18 +26,22 @@
   <div class="kanji-keyword"><%%= key_word %></div>
 
   <div id="kanji-info-container" >
-    <div class="kanji-character kanji-info"><%%= kanji %></div>
-  </div>
-
-  <div class="kanji-feedback">
-  <p>
-    <a id="learned" class="btn btn-lg btn-primary kanji-info" href="#" role="button">○</a>
-    <a id='not_learned' class="btn btn-lg btn-primary kanji-info" href="#" role="button" id='learned'>×</a>
-  </p>
+    <div class="kanji-character"><%%= kanji %></div>
   </div>
 </script>
 
 <script type="text/html" id="review">
+  <div class="jumbotron">
+    <div id='kanji-container'></div>
+
+    <div class="kanji-feedback">
+      <p>
+        <a id="learned" class="btn btn-lg btn-primary" href="#" role="button">○</a>
+        <a id='not_learned' class="btn btn-lg btn-primary" href="#" role="button" id='learned'>×</a>
+      </p>
+    </div>
+  </div>
+
   <div class="col-lg-6">
     <h4>This batch</h4>
     <p>

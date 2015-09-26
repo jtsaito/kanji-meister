@@ -13,10 +13,16 @@ window.ReviewView = Backbone.View.extend({
 
     this.listenTo(this.collection, 'reset', this.collection_updated)
     this.listenTo(this.kanji_view, 'clicked-result', this.increment_index)
-    this.listenTo(this.kanji_view, 'kanji-clicked', this.clicked)
 
   template: ->
     _.template( $("#review").html() )
+
+  events: {
+    "click a#next-review-item" : "increment_index"
+    "click a#learned" : "learned"
+    "click a#not_learned" : "not_learned"
+    "click div.kanji-keyword" : "kanji_clicked"
+  }
 
   render: () ->
     kanji_list = this.collection.map( (it) ->
@@ -25,13 +31,26 @@ window.ReviewView = Backbone.View.extend({
 
     this.$el.html(this.template()({ "kanji_list": kanji_list }))
 
+    this.render_kanji_view()
+    this.render_kanji_feedback()
+
     this
 
-  events: {
-    "click a#next-review-item" : "increment_index"
-    "click a#learned" : "learned"
-    "click a#not_learned" : "not_learned"
-  }
+  render_kanji_view: ->
+    this.$('#kanji-container').html(this.kanji_view.el)
+    this.kanji_view.render()
+    this.kanji_view.delegateEvents()
+
+    if this.kanji_view.show_kanji
+      this.$(".kanji-info").show()
+    else
+      this.$(".kanji-info").hide()
+
+  render_kanji_feedback: ->
+    if this.kanji_view.show_kanji
+      this.$(".kanji-feedback").show()
+    else
+      this.$(".kanji-feedback").hide()
 
   increment_index: ->
     new_index = (this.index + 1) % this.collection.length
@@ -42,6 +61,7 @@ window.ReviewView = Backbone.View.extend({
 
   collection_updated: ->
     this.set_index(0)
+    this.kanji_view.show_kanji = false
     this.render()
 
   set_index: (index) ->
@@ -49,6 +69,7 @@ window.ReviewView = Backbone.View.extend({
 
     kanji = this.collection.at(this.index).kanji()
     this.kanji_view.trigger("kanji_updated", kanji)
+    this.render_kanji_feedback()
 
   # kanji stuff
   learned: ->
@@ -57,14 +78,15 @@ window.ReviewView = Backbone.View.extend({
 
   not_learned: ->
     this.post_kanji_reviewed_event(correct: false)
-    this._view.trigger("clicked-result")
+    this.kanji_view.trigger("clicked-result")
 
-  clicked: (e) ->
+  kanji_clicked: (e) ->
     this.kanji_view.toggle_show_kanji()
     this.kanji_view.render()
 
+    this.render_kanji_feedback()
+
   show_kanji_buttons: ->
-    console.log "show kanji buttons? #{this.kanji_view.show_kanji}"
     this.kanji_view.show_kanji
 
   post_kanji_reviewed_event: (result) ->
