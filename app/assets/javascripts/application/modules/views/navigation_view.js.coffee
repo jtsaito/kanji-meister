@@ -17,7 +17,12 @@ window.NavigationView = Backbone.View.extend({
     "click a#root" : "root"
     "click a#fetch_review_tasks" : "fetch_review_tasks"
     "click a#fetch_unreviewed_tasks" : "fetch_unreviewed_tasks"
+    "click li.nav-list" : "set_active_navigation"
   }
+
+  set_active_navigation: (event) ->
+    this.$(".nav-list").removeClass("active")
+    this.$(event.currentTarget).addClass("active")
 
   root: ->
     window.App.navigate("", {trigger: true})
