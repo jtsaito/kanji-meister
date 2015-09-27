@@ -5,10 +5,10 @@ window.NavigationView = Backbone.View.extend({
   className: 'navigation'
   id:        'navigation-view'
 
-  template:  ->
+  template: ->
     _.template( $("#navigation").html() )
 
-  render: () ->
+  render: ->
     this.$el.html(this.template()())
 
     this
