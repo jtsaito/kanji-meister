@@ -1,11 +1,10 @@
 window.App = new ( Backbone.Router.extend({
 
-  routes: {
+  routes:
     "":          "index",
     "index":     "index",
     "review":    "review",
     "learn_new": "learn_new"
-  }
 
   start: ->
     this.set_user_uuid()
