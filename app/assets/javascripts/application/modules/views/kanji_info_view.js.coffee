@@ -9,7 +9,7 @@ window.KanjiInfoView = Backbone.View.extend({
     _.template( $("#review-info").html() )
 
   render: () ->
-    this.$el.html(this.template()(this.model.attributes)) # if this.model != null
+    this.$el.html(this.template()(this.model.attributes))
 
     this
 
