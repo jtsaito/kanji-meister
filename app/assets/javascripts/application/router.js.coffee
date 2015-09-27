@@ -1,8 +1,10 @@
 window.App = new ( Backbone.Router.extend({
 
   routes: {
-    "":                  "index",
-    "index":             "index",
+    "":          "index",
+    "index":     "index",
+    "review":    "review",
+    "learn_new": "learn_new"
   }
 
   start: ->
@@ -14,19 +16,32 @@ window.App = new ( Backbone.Router.extend({
 
     Backbone.history.start({pushState: true }) unless Backbone.History.started
 
+    this.setup_views()
+
   set_user_uuid: ->
     window.App.uuid = $("#uuid").attr("uuid")
 
-  index: ->
+  setup_views: ->
     this.kanjiView = new KanjiView({ model: this.kanji })
 
     this.tasks = new Tasks()
     this.reviewView = new ReviewView({ collection: this.tasks, kanji_view: this.kanjiView })
 
-    $('#review-container').html(this.reviewView.el)
-    this.navigationView = new NavigationView({ review_view: this.reviewView })
-    $('#navigation-container').html(this.navigationView.el)
+  index: ->
+    this.indexView = new IndexView()
+    $('#review-container').html(this.indexView.el)
+    this.indexView.render()
 
+    this.navigationView = new NavigationView()
+    $('#navigation-container').html(this.navigationView.el)
     this.navigationView.render()
+
+  review: ->
+    $('#review-container').html(this.reviewView.el)
+    this.reviewView.fetch_tasks("review")
+
+  learn_new: ->
+    $('#review-container').html(this.reviewView.el)
+    this.reviewView.fetch_tasks("introduction")
 
 }))

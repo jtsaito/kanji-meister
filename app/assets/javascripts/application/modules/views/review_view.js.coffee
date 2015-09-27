@@ -3,7 +3,7 @@ window.ReviewView = Backbone.View.extend({
   # new element's attributes
   tagName:   'div'
   className: 'review'
-  id:        'review-view'
+  id:        'review-container'
 
   initialize: (attrs) ->
     this.index = 0

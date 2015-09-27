@@ -5,26 +5,26 @@ window.NavigationView = Backbone.View.extend({
   className: 'navigation'
   id:        'navigation-view'
 
-  initialize: (attrs) ->
-    this.review_view = attrs["review_view"]
-    this.review_view.on("fetch_tasks", this.review_view.fetch_tasks)
-
   template:  ->
     _.template( $("#navigation").html() )
 
   render: () ->
     this.$el.html(this.template()())
+
     this
 
   events: {
-    "click a#fetch_unreviewed_tasks" : "fetch_unreviewed_tasks"
+    "click a#root" : "root"
     "click a#fetch_review_tasks" : "fetch_review_tasks"
+    "click a#fetch_unreviewed_tasks" : "fetch_unreviewed_tasks"
   }
 
-  fetch_unreviewed_tasks: ->
-    this.review_view.trigger("fetch_tasks", "introduction")
+  root: ->
+    window.App.navigate("", {trigger: true})
 
   fetch_review_tasks: ->
-    this.review_view.trigger("fetch_tasks", "review")
+    window.App.navigate("review", {trigger: true})
 
+  fetch_unreviewed_tasks: ->
+    window.App.navigate("learn_new", {trigger: true})
 })
