@@ -19,10 +19,8 @@ window.App = new ( Backbone.Router.extend({
     window.App.uuid = $("#uuid").attr("uuid")
 
   setup_views: ->
-    this.kanjiView = new KanjiView({ model: this.kanji })
-
-    this.tasks = new Tasks()
-    this.reviewView = new ReviewView({ collection: this.tasks, kanji_view: this.kanjiView })
+    this.kanjiView = new KanjiView()
+    this.reviewView = new ReviewView({ kanji_view: this.kanjiView })
 
   index: ->
     this.indexView = new IndexView()

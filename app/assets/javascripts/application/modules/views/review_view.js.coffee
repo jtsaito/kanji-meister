@@ -6,6 +6,7 @@ window.ReviewView = Backbone.View.extend({
   id:        'review-container'
 
   initialize: (attrs) ->
+    this.collection = new Tasks()
     this.index = 0
 
     this.kanji_view = attrs["kanji_view"]
