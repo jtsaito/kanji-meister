@@ -15,8 +15,6 @@ window.App = new ( Backbone.Router.extend({
 
     Backbone.history.start({pushState: true }) unless Backbone.History.started
 
-    this.setup_views()
-
   set_user_uuid: ->
     window.App.uuid = $("#uuid").attr("uuid")
 
@@ -36,10 +34,12 @@ window.App = new ( Backbone.Router.extend({
     this.navigationView.render()
 
   review: ->
+    this.setup_views()
     $('#review-container').html(this.reviewView.el)
     this.reviewView.fetch_tasks("review")
 
   learn_new: ->
+    this.setup_views()
     $('#review-container').html(this.reviewView.el)
     this.reviewView.fetch_tasks("introduction")
 
