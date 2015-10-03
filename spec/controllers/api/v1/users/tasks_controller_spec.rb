@@ -15,10 +15,6 @@ RSpec.describe Api::V1::Users::TasksController, type: :controller do
 
         expect(response).to have_http_status(:success)
       end
-
-      it "returns stuff" do
-        #get :index, show_params
-      end
     end
   end
 
