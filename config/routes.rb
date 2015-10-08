@@ -17,6 +17,13 @@ Rails.application.routes.draw do
       resources :users, param: :uuid do
         # routing has issues with combining nested resources and namespaces
         resources :tasks, only: :index, controller: 'users/tasks', action: 'index'
+
+        resources :kanjis, param: :character do
+          resources :kanji_comments,
+                    only: [:create, :index],
+                    controller: 'users/kanjis/kanji_comments'
+        end
+
       end
 
     end
