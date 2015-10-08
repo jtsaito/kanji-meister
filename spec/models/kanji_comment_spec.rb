@@ -6,10 +6,10 @@ RSpec.describe KanjiComment, type: :model do
     subject { described_class.create!(attributes) }
 
     let(:attributes) do
-      { kanji: kanji, user: user, text: text }
+      { kanji_character: kanji_character, user: user, text: text }
     end
 
-    let(:kanji) { Kanji.all.first.kanji }
+    let(:kanji_character) { Kanji.all.first.kanji }
     let(:user) { create(:user) }
     let(:text) { SecureRandom.hex(255) }
 
@@ -18,7 +18,7 @@ RSpec.describe KanjiComment, type: :model do
     its(:text) { should eql(text) }
 
     context "without kanji" do
-      let(:kanji) { nil }
+      let(:kanji_character) { nil }
 
       it "raises" do
         expect { subject }.to raise_error(ActiveRecord::RecordInvalid)

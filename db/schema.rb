@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003143408) do
+ActiveRecord::Schema.define(version: 20151008175646) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20151003143408) do
   add_index "events", ["user_uuid"], name: "index_events_on_user_uuid", using: :btree
 
   create_table "kanji_comments", force: :cascade do |t|
-    t.uuid     "user_uuid",  limit: 16
-    t.string   "kanji",      limit: 255
-    t.text     "text",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.uuid     "user_uuid",       limit: 16
+    t.string   "kanji_character", limit: 255
+    t.text     "text",            limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "kanji_comments", ["user_uuid", "kanji"], name: "index_kanji_comments_on_user_uuid_and_kanji", unique: true, using: :btree
+  add_index "kanji_comments", ["user_uuid", "kanji_character"], name: "index_kanji_comments_on_user_uuid_and_kanji_character", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
