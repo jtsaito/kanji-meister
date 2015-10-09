@@ -82,4 +82,30 @@ RSpec.describe Api::V1::Users::Kanjis::KanjiCommentsController, type: :controlle
 
   end
 
+  describe "PUT #update" do
+    let!(:kanji_comment) { create(:kanji_comment, user: user, text: "original text") }
+
+    subject do
+      put :update,
+        id: kanji_comment.id,
+        user_uuid: kanji_comment.user_uuid,
+        kanji_character: kanji_comment.kanji_character,
+        text: "updated text",
+        format: :json
+    end
+
+    it "200" do
+      subject
+
+      expect(response).to have_http_status(:success)
+    end
+
+    it "updates text" do
+      expect { subject }.to change {
+        kanji_comment.reload.text
+      }.from("original text").to("updated text")
+    end
+
+  end
+
 end

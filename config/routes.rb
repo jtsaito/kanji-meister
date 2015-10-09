@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
         resources :kanjis, param: :character do
           resources :kanji_comments,
-                    only: [:create, :index],
+                    only: [:create, :index, :update],
                     controller: 'users/kanjis/kanji_comments'
         end
 

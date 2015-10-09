@@ -23,6 +23,15 @@ module Api
             end
           end
 
+          def update
+            KanjiComment.find(params.require(:id))
+                        .update!(update_params)
+
+            respond_to do |format|
+              format.json { head :ok }
+            end
+          end
+
           private
 
           def index_params
@@ -31,6 +40,10 @@ module Api
 
           def create_params
             params.permit(:user_uuid, :kanji_character, :text)
+          end
+
+          def update_params
+            params.permit(:id, :text).slice(:id, :text)
           end
 
         end
