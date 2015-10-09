@@ -119,6 +119,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.2.0)
+      byebug (~> 5.0)
+      pry (~> 0.10)
     rack (1.6.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -237,7 +240,7 @@ DEPENDENCIES
   jquery-ui-rails
   less-rails
   mysql2
-  pry
+  pry-byebug
   rails (= 4.2.1)
   rspec-its
   rspec-rails (~> 3.0)
