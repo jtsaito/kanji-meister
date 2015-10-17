@@ -7,7 +7,11 @@ module Api
         def index
           user = User.find_by_uuid(params[:user_uuid])
 
-          render json: Task.for_user(user, only_new: params[:only_new]).to_json
+          tasks = Task.for_user(user, only_new: params[:only_new])
+
+          tasks.each { |task| task.create_kanji_comment(user) }
+
+          render json: tasks.to_json
         end
       end
     end
