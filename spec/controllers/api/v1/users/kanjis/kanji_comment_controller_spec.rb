@@ -108,4 +108,39 @@ RSpec.describe Api::V1::Users::Kanjis::KanjiCommentsController, type: :controlle
 
   end
 
+  describe "GET #show" do
+
+    let!(:the_post) do
+      post :create,
+           user_uuid: user.uuid,
+           kanji_character: kanji_character,
+           text: "some_text",
+           format: :json
+    end
+
+    let(:kanji_character) { Kanji.all.first.kanji }
+
+    it "200" do
+      expect(response).to have_http_status(:success)
+    end
+
+    context "the response" do
+
+      subject { response.body }
+
+      let(:expected_kanji_comment) do
+        KanjiComment.first.attributes.symbolize_keys.except(:created_at, :updated_at)
+      end
+
+      let(:rendered_json_attributes) do
+        JSON.parse(subject).symbolize_keys.except(:created_at, :updated_at)
+      end
+
+      it "renders kanji comment as json" do
+        expect(rendered_json_attributes).to eq(expected_kanji_comment)
+      end
+
+    end
+  end
+
 end
