@@ -12,7 +12,7 @@ RSpec.describe Api::V1::Users::Kanjis::KanjiCommentsController, type: :controlle
     subject do
       post :create,
            user_uuid: user.uuid,
-           kanji_character: 'k',
+           kanji_character: Kanji.all.first.kanji,
            text: "some_text",
            format: :json
     end
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::Users::Kanjis::KanjiCommentsController, type: :controlle
 
     it "creates kanji comment with kanji character" do
       expect { subject }.to change {
-        KanjiComment.where(kanji_character: 'k').count
+        KanjiComment.where(kanji_character: Kanji.all.first.kanji).count
       }.by(1)
     end
 

@@ -25,6 +25,14 @@ RSpec.describe KanjiComment, type: :model do
       end
     end
 
+    context "when kanji is not known" do
+      let(:kanji_character) { "*" }
+
+      it "raises" do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+
     context "without user" do
       let(:user) { nil }
 
