@@ -50,7 +50,7 @@ group :development, :test do
   # fake env variables from /.env file
   gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
-  gem 'pry'
+  gem 'pry-byebug'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

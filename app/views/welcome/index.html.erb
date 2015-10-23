@@ -60,12 +60,20 @@
       </div>
     <p>
   </div>
+
+  <div id="kanji-comment-container"></div>
 </script>
 
 <script type="text/html" id="review-info">
   <div class="kanji-info">Heisig Lesson: <%%= heisig_lesson %></div>
   <div class="kanji-info">Heisig ID: <%%= heisig_id %></div>
   <div class="kanji-info">Strokes: <%%= stroke_count%></div>
+</script>
+
+<script type="text/html" id="kanji-comment">
+  <div class="review-info">
+    <textarea id="comment"><%%= text %></textarea>
+  </div>
 </script>
 
 <script type="text/html" id="navigation">

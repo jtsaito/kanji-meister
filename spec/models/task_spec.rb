@@ -2,11 +2,11 @@ require "rails_helper"
 
 describe Task do
 
+  let(:user) { create(:user) }
+
   describe ".for_user" do
 
     subject { Task.for_user(user) }
-
-    let(:user) { create(:user) }
 
     context "when the user has no kanji_rendered events" do
       it { is_expected.to be_empty }
@@ -45,6 +45,27 @@ describe Task do
 
     end
 
+  end
+
+  describe "#create_kanji_comment" do
+    let(:task) { build(:task) }
+
+    subject { task.create_kanji_comment(user) }
+
+    it "creates exactly one kanji comment" do
+      expect { subject }.to change { KanjiComment.count }.by 1
+    end
+
+    context "the kanji comment" do
+      before do
+        task.create_kanji_comment(user)
+      end
+
+      subject { KanjiComment.last }
+
+      its(:kanji_character) { is_expected.to eql(task.kanji.kanji) }
+      its(:user) { is_expected.to eql(user) }
+    end
   end
 
 end

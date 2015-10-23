@@ -14,9 +14,16 @@ Rails.application.routes.draw do
       # events should eventually be moved into a seperate service
       resources :events, only: :create
 
-      resources :users do
+      resources :users, param: :uuid do
         # routing has issues with combining nested resources and namespaces
         resources :tasks, only: :index, controller: 'users/tasks', action: 'index'
+
+        resources :kanjis, param: :character do
+          resources :kanji_comments,
+                    only: [:create, :index, :update, :show],
+                    controller: 'users/kanjis/kanji_comments'
+        end
+
       end
 
     end

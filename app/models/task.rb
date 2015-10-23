@@ -1,5 +1,5 @@
 class Task < Struct.new(:kanji)
-  def initialize(kanji)
+  def initialize(kanji = nil)
     self.kanji = kanji.is_a?(Kanji) ? kanji : Kanji.first(:kanji, kanji)
   end
 
@@ -13,6 +13,12 @@ class Task < Struct.new(:kanji)
 
   def <=>(other)
     kanji <=> other.kanji
+  end
+
+  def create_kanji_comment(user)
+    attributes = { kanji_character: kanji.kanji, user_uuid: user.uuid }
+
+    KanjiComment.where(attributes).first_or_create
   end
 
   private
