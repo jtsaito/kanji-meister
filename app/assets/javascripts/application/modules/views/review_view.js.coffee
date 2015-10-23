@@ -61,12 +61,11 @@ window.ReviewView = Backbone.View.extend({
   render_kanji_info: ->
     this.$('#review-info-container').html(this.kanji_info_view.el)
 
-    if this.kanji != null
-      if this.kanji_view.show_kanji
-        this.$(".review-info").show()
-      else
-        this.$(".review-info").hide()
+    if this.kanji_view.show_kanji
       this.kanji_info_view.render()
+      this.$(".review-info").show()
+    else
+      this.$(".review-info").hide()
 
   increment_index: ->
     new_index = (this.index + 1) % this.collection.length
