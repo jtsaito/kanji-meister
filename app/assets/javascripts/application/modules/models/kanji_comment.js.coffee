@@ -4,7 +4,7 @@ window.KanjiComment = Backbone.Model.extend(
     text: ""
 
   url: ->
-      "/api/v1/users/#{window.App.uuid}/kanjis/#{this.get("kanji_character")}/kanji_comments/#{this.id||''}"
+    "/api/v1/users/#{window.App.uuid}/kanjis/#{this.get("kanji_character")}/kanji_comments/#{this.id||''}"
 
   toJSON: ->
     _.clone( this.attributes )

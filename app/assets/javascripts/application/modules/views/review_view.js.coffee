@@ -27,7 +27,7 @@ window.ReviewView = Backbone.View.extend({
     "click div.kanji-keyword" : "kanji_clicked"
   }
 
-  render: () ->
+  render: ->
     kanji_list = this.collection.map( (it) ->
       it.kanji().get("key_word")
     ).join(", ")
@@ -85,6 +85,7 @@ window.ReviewView = Backbone.View.extend({
 
     kanji = this.collection.at(this.index).kanji()
     this.kanji_view.trigger("kanji_updated", kanji)
+
     this.render_kanji_feedback()
     this.kanji_info_view.model = kanji
     this.render_kanji_info()
@@ -103,7 +104,6 @@ window.ReviewView = Backbone.View.extend({
     this.kanji_view.render()
 
     this.render_kanji_feedback()
-
     this.render_kanji_info()
 
   show_kanji_buttons: ->
