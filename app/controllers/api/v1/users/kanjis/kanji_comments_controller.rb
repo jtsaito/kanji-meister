@@ -18,16 +18,24 @@ module Api
           end
 
           def create
-            KanjiComment.create!(create_params)
+            kanji_comment = KanjiComment.where(create_params).first_or_create!
 
             respond_to do |format|
-              format.json { head :ok }
+              format.json { render json: kanji_comment }
             end
           end
 
           def index
+            kanji_comment = KanjiComment.where(index_params).first
+
             respond_to do |format|
-              format.json { render json: KanjiComment.where(index_params).first }
+              format.json do
+                if kanji_comment.present?
+                  render json: kanji_comment
+                else
+                  render status: 404, json: nil
+                end
+              end
             end
           end
 
