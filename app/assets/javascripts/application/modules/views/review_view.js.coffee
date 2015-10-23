@@ -16,6 +16,7 @@ window.ReviewView = Backbone.View.extend({
     this.listenTo(this.kanji_view, 'clicked-result', this.increment_index)
 
     this.kanji_info_view = new KanjiInfoView()
+    this.kanji_comment_view = new KanjiCommentView()
 
   template: ->
     _.template( $("#review").html() )
@@ -25,6 +26,7 @@ window.ReviewView = Backbone.View.extend({
     "click a#learned" : "learned"
     "click a#not_learned" : "not_learned"
     "click div.kanji-keyword" : "kanji_clicked"
+    "change textarea": "update_text_from_user_input"
   }
 
   render: ->
@@ -37,6 +39,7 @@ window.ReviewView = Backbone.View.extend({
     this.render_kanji_view()
     this.render_kanji_feedback()
     this.render_kanji_info()
+    this.render_kanji_comment_view()
 
     this
 
@@ -67,6 +70,18 @@ window.ReviewView = Backbone.View.extend({
     else
       this.$(".review-info").hide()
 
+    this.kanji_info_view.render()
+
+  render_kanji_comment_view: ->
+    this.$('#kanji-comment-container').html(this.kanji_comment_view.el)
+
+    this.kanji_comment_view.render({task: this.get_task()})
+
+    if this.kanji_view.show_kanji
+      this.$(".review-info").show()
+    else
+      this.$(".review-info").hide()
+
   increment_index: ->
     new_index = (this.index + 1) % this.collection.length
     this.set_index(new_index)
@@ -82,12 +97,20 @@ window.ReviewView = Backbone.View.extend({
   set_index: (index) ->
     this.index = index
 
-    kanji = this.collection.at(this.index).kanji()
+    kanji = this.get_task().kanji()
+
     this.kanji_view.trigger("kanji_updated", kanji)
 
     this.render_kanji_feedback()
     this.kanji_info_view.model = kanji
     this.render_kanji_info()
+    this.render_kanji_comment_view()
+
+  get_task: ->
+    task = this.collection.at(this.index)
+
+  get_kanji_comment: ->
+    this.get_task()["kanji_comment"]
 
   # kanji stuff
   learned: ->
@@ -104,6 +127,7 @@ window.ReviewView = Backbone.View.extend({
 
     this.render_kanji_feedback()
     this.render_kanji_info()
+    this.render_kanji_comment_view()
 
   show_kanji_buttons: ->
     this.kanji_view.show_kanji
@@ -117,5 +141,11 @@ window.ReviewView = Backbone.View.extend({
         kanji_attributes: this.kanji_view.model.attributes
         result: result
     ).save()
+
+  update_text_from_user_input: (e) ->
+    new_text = e.target.value
+    kanji_comment = this.get_kanji_comment()
+    kanji_comment.set("text", new_text)
+    kanji_comment.save()
 
 })
