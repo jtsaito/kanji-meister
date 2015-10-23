@@ -7,8 +7,8 @@ window.Task = Backbone.Model.extend(
 
   add_and_fetch_kanji_comment: (kanji_comment) ->
     this["kanji_comment"] = kanji_comment
-    this.comment.fetch()
-    this.comment
+    this.comment().fetch()
+    this.comment()
 
   comment: ->
     this["kanji_comment"]
