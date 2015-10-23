@@ -9,6 +9,14 @@ module Api
         class KanjiCommentsController < ::Api::BaseAPIController
           protect_from_forgery except: :index
 
+          def show
+            kanji_comment = KanjiComment.where(create_params).first!
+
+            respond_to do |format|
+              format.json { render json: kanji_comment }
+            end
+          end
+
           def create
             KanjiComment.create!(create_params)
 
