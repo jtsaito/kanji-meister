@@ -12,7 +12,7 @@ window.KanjiCommentView = Backbone.View.extend({
 
     kanji_comment = task["kanji_comment"]
 
-    text = if kanji_comment then kanji_comment.get("kanji_character") else ""
+    text = if kanji_comment then kanji_comment.get("text") else ""
 
     this.$el.html(this.template()( { text: text } ))
 
