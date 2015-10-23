@@ -5,7 +5,10 @@ window.KanjiInfoView = Backbone.View.extend({
   className: 'kanji'
   id:        'kanji-info-view'
 
-  template:  ->
+  initialize: ->
+    this.model = new Kanji()
+
+  template: ->
     _.template( $("#review-info").html() )
 
   render: ->
