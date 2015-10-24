@@ -11,8 +11,13 @@ window.KanjiInfoView = Backbone.View.extend({
   template: ->
     _.template( $("#review-info").html() )
 
+  jisho_url: ->
+    encoded_kanji = encodeURIComponent(this.model.get("kanji"))
+    "http://jisho.org/word/#{encoded_kanji}"
+
   render: ->
-    this.$el.html(this.template()(this.model.attributes))
+    attributes = _.extend(this.model.attributes, { "jisho_url": this.jisho_url() } )
+    this.$el.html(this.template()(attributes))
 
     this
 })
