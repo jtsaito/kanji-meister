@@ -32,7 +32,7 @@ settings. These were missing. The custom JSON from and should look as follows.
 }
 ```
 
-Note that the OpsWork's Chef cookbook will replace
+Note that the OpsWork Chef cookbook will replace
 `config/database.yml` and insert a production settings block.
 
 **Fix 2*.* The `rubyracer` gem had to be added to the repo's Gemfile. It appears to be are required for `rake db migrate`.
