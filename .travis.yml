@@ -1,2 +1,4 @@
 language: ruby
+before_script:
+  - bundle exec rake db:create db:schema:load_from_yml
 script: "bundle exec rake"
