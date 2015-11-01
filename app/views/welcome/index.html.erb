@@ -82,6 +82,12 @@
     <li role="presentation" class="nav-list active"><a id='root'>Home</a></li>
     <li role="presentation" class="nav-list"><a id='fetch_review_tasks'>Review</a></li>
     <li role="presentation" class="nav-list"><a id='fetch_unreviewed_tasks'>Learn new</a></li>
+    <li role="presentation" class="nav-list drop-down">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Session <span class="caret"></span></a>
+     <ul class="dropdown-menu">
+       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+     </ul>
+    </li>
   </ul>
 </script>
 
