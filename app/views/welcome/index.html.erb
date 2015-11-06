@@ -51,23 +51,22 @@
     <p>
   </div>
 
+  <div id="kanji-comment-container"></div>
+
   <div class="col-lg-12">
-    <h4>Kanji</h4>
-    <p>
-      <div class="review-info">
-        <div id="review-info-container">
-      </div>
-    <p>
+    <div class="review-info">
+      <div id="review-info-container">
+    </div>
   </div>
 
-  <div id="kanji-comment-container"></div>
 </script>
 
 <script type="text/html" id="review-info">
-  <div class="kanji-info">Heisig Lesson: <%%= heisig_lesson %></div>
-  <div class="kanji-info">Heisig ID: <%%= heisig_id %></div>
-  <div class="kanji-info">Strokes: <%%= stroke_count%></div>
-  <div class="kanji-info"><a href="<%%= jisho_url %>">Jisho</a><div>
+  <div class="kanji-info">
+    Lesson <%%= heisig_lesson %>#<%%= heisig_id %>, stroke count <%%= stroke_count%>.
+    <a href="<%%= jisho_url %>" target="_blank">Jisho</a>
+  </div>
+  <div class="kanji-info"><div>
 </script>
 
 <script type="text/html" id="kanji-comment">
