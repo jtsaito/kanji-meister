@@ -38,4 +38,8 @@ Note that the OpsWork Chef cookbook will replace
 **Fix 2*.* The `rubyracer` gem had to be added to the repo's Gemfile. It appears to be are required for `rake db migrate`.
 
 # Kanji data
-The application expects the kanji data to be present as `config/kanji.yml`. Its format can be found in the fixtures.
+The application expects the kanji data to be present as
+`config/kanji.yml`. Its format can be found in the fixtures.
+Using the before symlink hook provided by the default
+AWS OpsWorks stack, the file is downloaded from a URL
+provided by the KANJI_MEISTER_URL environment variable.
