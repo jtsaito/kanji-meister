@@ -16,4 +16,9 @@
 //= require jquery-ui
 //= require turbolinks
 //= require underscore
-//= require_tree .
+
+//= require application/lib/app
+//= require application/lib/backbone
+
+//= require spa
+//= require bootstrap
