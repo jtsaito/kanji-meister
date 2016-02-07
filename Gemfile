@@ -43,8 +43,6 @@ gem 'devise', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'underscore-rails'
-
 group :development, :test do
   # fake env variables from /.env file
   gem 'dotenv-rails', :require => 'dotenv/rails-now'
