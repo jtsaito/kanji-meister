@@ -15,5 +15,3 @@
 //= require application/lib/underscore-min
 
 //= require turbolinks
-
-//= require application/lib/app

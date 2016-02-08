@@ -2299,6 +2299,12 @@
 
 }).call(this);
 (function() {
+  $(function() {
+    return window.App.start();
+  });
+
+}).call(this);
+(function() {
   window.App = new (Backbone.Router.extend({
     routes: {
       "": "index",
@@ -2381,11 +2387,11 @@
 
 
 
-//
+
 //# require application/lib/jquery-1.12.0.min
 //# require application/lib/underscore-min
 //# require application/lib/bootstrap
-//# require application/lib/app
+
 
 
 
