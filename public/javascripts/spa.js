@@ -486,6 +486,13 @@
 //
 
 //
+//# require application/lib/jquery-1.12.0.min
+//# require application/lib/underscore-min
+//# require application/lib/bootstrap
+//# require application/lib/app
+
+//# require application/lib/backbone
+
 
 
 
