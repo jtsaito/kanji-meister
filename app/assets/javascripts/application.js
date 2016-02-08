@@ -17,5 +17,3 @@
 //= require turbolinks
 
 //= require application/lib/app
-
-//= require bootstrap
