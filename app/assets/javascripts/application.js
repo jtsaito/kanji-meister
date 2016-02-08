@@ -20,5 +20,4 @@
 //= require application/lib/app
 //= require application/lib/backbone
 
-//= require spa
 //= require bootstrap
