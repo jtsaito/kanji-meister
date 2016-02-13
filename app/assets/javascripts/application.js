@@ -11,7 +11,4 @@
 // about supported directives.
 //
 
-//= require application/lib/jquery-1.12.0.min
-//= require application/lib/underscore-min
-
 //= require turbolinks
