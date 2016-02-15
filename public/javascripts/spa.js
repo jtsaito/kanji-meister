@@ -2369,22 +2369,23 @@ n.cssHooks[b]=Ua(l.pixelPosition,function(a,c){return c?(c=Sa(a,b),Oa.test(c)?n(
 
 
 }).call(this);
+(function() {
+  var csrfToken;
 
+  csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+  Backbone.sync = (function(original) {
+    return function(method, model, options) {
+      options.beforeSend = function(xhr) {
+        return xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+      };
+      return original(method, model, options);
+    };
+  })(Backbone.sync);
+
+}).call(this);
 (function() {
   $(function() {
-
-    Backbone.sync = (function(original) {
-      return function(method, model, options) {
-        options.beforeSend = function(xhr) {
-          var text = $(".foo").text();
-          alert("foo:" + text);
-
-          xhr.setRequestHeader('X-CSRF-Token', App.csrfToken);
-        };
-        original(method, model, options);
-      };
-    })(Backbone.sync);
-
     return window.App.start();
   });
 
@@ -2408,6 +2409,7 @@ n.cssHooks[b]=Ua(l.pixelPosition,function(a,c){return c?(c=Sa(a,b),Oa.test(c)?n(
 
 
 // actual Backbone app
+
 
 
 
