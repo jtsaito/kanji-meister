@@ -43,3 +43,12 @@ The application expects the kanji data to be present as
 Using the before symlink hook provided by the default
 AWS OpsWorks stack, the file is downloaded from a URL
 provided by the KANJI_MEISTER_URL environment variable.
+
+# Single Page App
+Currently, the main frontend interaction is provided by a single page app.
+The app's assets are entirely served from S3. The latest assets' bucket and
+file names are provided from a DynamoDB table. The table allows rolling out
+the single page app independently of the backend API (i.e., this rails app).
+The settings for the table are stored in `config/single_page_app_assets.yml`.
+Moreover, we require the EC2 instance to have AIM policies to access 
+the DyanmoDB table.
