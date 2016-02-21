@@ -1,0 +1,11 @@
+production: &production
+  dynamo_table_name: <%= ENV["SINGLE_PAGE_APP_ASSETS_DYNAMO_DB_TABLE"] || 'kanji-meister-assets' %>
+  dynamo_table_region: <%= ENV["SINGLE_PAGE_APP_ASSETS_DYNAMO_DB_REGION"] || 'eu-west-1' %>
+  s3_bucket_region: <%= ENV["SINGLE_PAGE_APP_ASSETS_S3_BUCKET_REGION"] || 'eu-central-1' %>
+  s3_bucket_name: <%= ENV["SINGLE_PAGE_APP_ASSETS_S3_BUCKET_NAME"] || 'kanji-meister' %>
+
+development:
+  <<: *production
+
+test:
+  <<: *production
